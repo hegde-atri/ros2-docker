@@ -1,3 +1,5 @@
+[[https://img.shields.io/github/actions/workflow/status/hegde-atri/ros2-docker/docker-publish.yml
+]]
 #+title: ROS2 Humble Development Container
 #+author: Atri Hegde
 
@@ -6,7 +8,7 @@
 * Instructions
 ** Setting up VSCode (Optional)
 
-You can just write your code in your preferred code editor directly from your ros2 workspace, but if you work with VSCode you can install the Dev Containers extension to connect to the ros2 docker container, so you can open terminals directly from vscode without having to run =ros_shell=.
+You can just write your code in your preferred code editor directly from your ros2 workspace, but if you work with VSCode you can install the Dev Containers extension to connect to the ros2 docker container, so you can open terminals directly from vscode without having to run =ros_shell= (or its equivalent).
 
 ** Linux
 
