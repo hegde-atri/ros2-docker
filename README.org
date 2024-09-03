@@ -1,5 +1,4 @@
-[[https://img.shields.io/github/actions/workflow/status/hegde-atri/ros2-docker/docker-publish.yml
-]]
+[[Build Status][https://img.shields.io/github/actions/workflow/status/hegde-atri/ros2-docker/docker-publish.yml.svg]]
 #+title: ROS2 Humble Development Container
 #+author: Atri Hegde
 
