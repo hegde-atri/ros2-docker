@@ -1,0 +1,28 @@
+services:
+  ros_dev_env:
+    container_name: ros2
+    image: ros2
+    # container_name: ${ROS_DEV_CONTAINER_NAME}
+    # image: ${ROS_DEV_CONTAINER_NAME}
+    build: ./
+    volumes:
+      # - ${ROS_PROJECT_PATH}:/ros2_ws/src/
+      - /home/mizuuu/repos/ros2/ros2-docker:/ros2_ws/src/
+    environment:
+      - DISPLAY=novnc:0.0
+    networks:
+      - x11
+    stdin_open: true
+    tty: true
+  novnc:
+    image: theasp/novnc:latest
+    environment:
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1080
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+    restart: on-failure
+networks:
+  x11:
