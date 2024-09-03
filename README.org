@@ -67,13 +67,20 @@ ros_shell() {
 
 ** Windows
 
+
+* Next steps for MacOS
+
 ** Setting up environment variables
 
-Set the following in either your =.envrc= using =direnv=. If you have not heard of =direnv=, we can just add it to our =.bashrc= file (or =.zshrc= if you are using zsh).
+We can just add it to our =.bashrc= file (or =.zshrc= if you are using zsh).
+
+#+begin_quote
+For advanced users: You can automate the loading of environement variables and docker containers using =direnv=.
+#+end_quote
 
 *** ROS2_DOCKER_DIR
 
-We need to have
+We need to have a variable called =ROS2_DOCKER_ENV= which contains the full path to the location where you have cloned this repository.
 
 #+begin_src bash
 export ROS2_DOCKER_ENV="/path/to/this/repository"
