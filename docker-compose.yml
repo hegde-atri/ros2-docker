@@ -1,10 +1,12 @@
 services:
   ros_dev_env:
-    container_name: ${ROS_DEV_CONTAINER_NAME}
-    image: ${ROS_DEV_CONTAINER_NAME}
+    container_name: ros2
+    image: ros2
     build: ./
     volumes:
-      - ${ROS_PROJECT_PATH}:/ros2_ws/src/
+      - type: bind
+        source: ${ROS_PROJECT_PATH}
+        target: /ros2_ws
     environment:
       - DISPLAY=novnc:0.0
     networks:
@@ -15,7 +17,7 @@ services:
     image: theasp/novnc:latest
     environment:
       - DISPLAY_WIDTH=1920
-      - DISPLAY_HEIGHT=1080
+      - DISPLAY_HEIGHT=1200
     ports:
       - "8080:8080"
     networks:
