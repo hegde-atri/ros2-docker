@@ -34,8 +34,8 @@ Since you use Linux I am expecting you to be familiar enough with the terminal t
 
 1. Find out what shell you are using by running the command =echo $SHELL=.
 2. It will be either bash or zsh.
-   a. If you are running =bash= add the next code block to =~/.bashrc=
-   b. If you are running =zsh= add the the next code block to =~/.zshrc=
+   1. If you are running =bash= add the next code block to =~/.bashrc=
+   2. If you are running =zsh= add the the next code block to =~/.zshrc=
 3. Add the full path to the location you cloned this repository and replacing the placeholder =<STEP-3>=.
 
 #+begin_src bash
@@ -64,7 +64,7 @@ You can type in =ros_start= to start the docker containers with the current dire
 Type =ros_shell= in the current terminal to enter your ros environment. You can keep spawing new terminals and entering =ros_shell= to have multiple shells.
 
 #+begin_quote
-Any GUI window opened will have to eb viewed using the noVNC viewer at [[http://localhost:8080/vnc.html]]
+Any GUI window opened will have to be viewed using the noVNC viewer at [[http://localhost:8080/vnc.html]]
 
 For a better VNC experience, in the settings toolbox, set the scaling mode to local.
 #+end_quote
