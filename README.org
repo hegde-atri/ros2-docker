@@ -31,7 +31,6 @@ Since you use Linux I am expecting you to be familiar enough with the terminal t
 
 
 *** setup.bash
-Run =source setup.bash= everytime you want to work on ROS or
 
 1. Find out what shell you are using by running the command =echo $SHELL=.
 2. It will be either bash or zsh.
@@ -40,24 +39,13 @@ Run =source setup.bash= everytime you want to work on ROS or
 
 #+begin_src bash
 ros_dev() {
-  if (( $# != 2 )); then
-    echo "Usage: ros_dev <container_name1> <project_path1>"
-    return 1
-  fi
+  ROS_PROJECT_PATH=$(pwd)
 
-  ROS_DEV_CONTAINER_NAME=$1
-  ROS_PROJECT_PATH=$2
-
-  cd $ROS_DOCKER_DIR && docker compose up -d --build
+  cd $ROS2_DOCKER_DIR && docker compose up -d --build
 }
 
 ros_shell() {
-    if (( $# != 1 )); then
-        echo "Usuage: ros_shell <container_name>"
-        return 1
-    fi
-
-    docker exec -it $1 /bin/zsh
+  docker exec -it ros2 /bin/zsh
 }
 #+end_src
 
