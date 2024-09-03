@@ -31,7 +31,7 @@ Since you use Linux I am expecting you to be familiar enough with the terminal t
 
 
 *** setup.bash
-Run the provided =setup.bash= everytime you want to work on ROS or
+Run =source setup.bash= everytime you want to work on ROS or
 
 1. Find out what shell you are using by running the command =echo $SHELL=.
 2. It will be either bash or zsh.
@@ -40,18 +40,15 @@ Run the provided =setup.bash= everytime you want to work on ROS or
 
 #+begin_src bash
 ros_dev() {
-  if (( $# % 2 != 0 )); then
-    echo "Usage: ros_dev <container_name1> <project_path1> [<container_name2> <project_path2> ...]"
+  if (( $# != 2 )); then
+    echo "Usage: ros_dev <container_name1> <project_path1>"
     return 1
   fi
 
-  while (( $# >= 2 )); do
-    ROS_DEV_CONTAINER_NAME=$1
-    ROS_PROJECT_PATH=$2
-    shift 2
+  ROS_DEV_CONTAINER_NAME=$1
+  ROS_PROJECT_PATH=$2
 
-    cd "$ROS2_DOCKER_DIR" && docker-compose up -d --build
-  done
+  cd $ROS_DOCKER_DIR && docker compose up -d --build
 }
 
 ros_shell() {
@@ -78,16 +75,16 @@ We can just add it to our =.bashrc= file (or =.zshrc= if you are using zsh).
 For advanced users: You can automate the loading of environement variables and docker containers using =direnv=.
 #+end_quote
 
-*** ROS2_DOCKER_DIR
+*** ROS_DOCKER_ENV
 
-We need to have a variable called =ROS2_DOCKER_ENV= which contains the full path to the location where you have cloned this repository.
+We need to have a variable called =ROS_DOCKER_ENV= which contains the full path to the location where you have cloned this repository.
 
 #+begin_src bash
-export ROS2_DOCKER_ENV="/path/to/this/repository"
+export ROS_DOCKER_ENV="/path/to/this/repository"
 #+end_src
 
 You can test if it worked by using this command and seeing the correct path as the output.
 
 #+begin_src bash
-echo $ROS2_DOCKER_ENV
+echo $ROS_DOCKER_ENV
 #+end_src
