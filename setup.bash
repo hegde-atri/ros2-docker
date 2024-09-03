@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-ros_dev() {
-  ROS_PROJECT_PATH=$(pwd)
+ros_start() {
+    export ROS_PROJECT_PATH=$(pwd)
+    cd $ROS2_DOCKER_ENV && docker compose up -d --build
+}
 
-  cd $ROS2_DOCKER_DIR && docker compose up -d --build
+ros_end() {
+    cd $ROS2_DOCKER_ENV && docker compose down
 }
 
 ros_shell() {

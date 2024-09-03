@@ -38,14 +38,17 @@ Since you use Linux I am expecting you to be familiar enough with the terminal t
    b. If you are running =zsh= add the the next code block to =~/.zshrc=
 
 #+begin_src bash
-ros_dev() {
-  ROS_PROJECT_PATH=$(pwd)
+ros_start() {
+    export ROS_PROJECT_PATH=$(pwd)
+    cd $ROS2_DOCKER_ENV && docker compose up -d --build
+}
 
-  cd $ROS2_DOCKER_DIR && docker compose up -d --build
+ros_end() {
+    cd $ROS2_DOCKER_ENV && docker compose down
 }
 
 ros_shell() {
-  docker exec -it ros2 /bin/zsh
+    docker exec -it ros2 /bin/zsh
 }
 #+end_src
 
