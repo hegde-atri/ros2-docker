@@ -24,9 +24,11 @@ And this to get its shell.
 
 #+end_src
 
+
 #+begin_quote
 Since you use Linux I am expecting you to be familiar enough with the terminal to setup your own aliases.
 #+end_quote
+
 
 * MacOS
 
@@ -73,3 +75,6 @@ When you are finished, type =ros_end= to shutdown the containers.
 
 
 * TODO Windows
+
+** Approaches and questions
+Have different branches for each different approach?

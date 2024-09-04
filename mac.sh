@@ -5,7 +5,7 @@ ros_start() {
     cd $ROS2_DOCKER_ENV && docker compose up -d --build
 }
 
-ros_end() {
+ros_stop() {
     cd $ROS2_DOCKER_ENV && docker compose down
 }
 

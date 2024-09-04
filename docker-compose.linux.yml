@@ -1,0 +1,19 @@
+services:
+  ros_dev_env:
+    container_name: ros2
+    image: ros2
+    build: ./
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - type: bind
+        source: ${ROS_PROJECT_PATH}
+        target: /ros2_ws
+    environment:
+      - DISPLAY=$DISPLAY
+    networks:
+      - x11
+    stdin_open: true
+    tty: true
+    privileged: true
+networks:
+  x11:
