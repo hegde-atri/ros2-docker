@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
     ros-humble-slam-toolbox \
     ros-humble-turtlebot3 \
     ros-humble-turtlebot3-msgs \
+    ros-humble-turtlesim \
     ros-humble-twist-mux \
     ros-humble-usb-cam \
     ros-humble-xacro \
