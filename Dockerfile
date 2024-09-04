@@ -1,6 +1,6 @@
 FROM osrf/ros:humble-desktop-full
 
-ARG WORKSPACE=humble_dev_ws
+ARG WORKSPACE=/ros2_ws
 WORKDIR /ros2_ws
 
 ENV QT_X11_NO_MITSHM=1
@@ -49,6 +49,10 @@ RUN apt-get autoremove -y \
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
 
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
+RUN echo 'echo "You are in the BASH shell."' >> ~/.bashrc
+RUN echo 'echo "This is not configured for ROS2 Development"' >> ~/.bashrc
+RUN echo 'echo "Return to the ZSH shell by running zsh"' >> ~/.bashrc
+
 RUN echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 
 RUN echo "export DISABLE_AUTO_TITLE=true" >> /root/.zshrc
@@ -62,6 +66,7 @@ RUN echo 'alias ssetup="source ./install/local_setup.zsh"' >> /root/.zshrc
 RUN echo 'alias cyclone="export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"' >> /root/.zshrc
 RUN echo 'alias fastdds="export RMW_IMPLEMENTATION=rmw_fastrtps_cpp"' >> /root/.zshrc
 RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> /root/.zshrc
+RUN echo 'export TURTLEBOT3_MODEL=waffle' >> /root/.zshrc
 
 RUN echo "autoload -U bashcompinit" >> /root/.zshrc
 RUN echo "bashcompinit" >> /root/.zshrc

@@ -4,30 +4,61 @@
 
 * Preface
 
-** Setting up VSCode (Optional)
-
-This is optional since the only ability it grants is you is to open docker container terminals in an easier manner.
-
-You can just write your code in your preferred code editor directly from your ros2 workspace, but if you work with VSCode you can install the Dev Containers extension to connect to the ros2 docker container, so you can open terminals directly from vscode without having to run =ros_shell= (or its equivalent).
+* Table of Contents :TOC:
+- [[#preface][Preface]]
+- [[#linux][Linux]]
+  - [[#setup-your-shell][Setup your shell]]
+  - [[#running-the-container][Running the container]]
+- [[#macos][MacOS]]
+  - [[#setup-your-shell-1][Setup your shell]]
+  - [[#running-the-containers][Running the containers]]
+- [[#windows][Windows]]
+- [[#setting-up-vscode-optional][Setting up VSCode (Optional)]]
 
 * Linux
 
-Thankfully, you don't need to run docker-compose on linux, as everything runs "natively" from the =Dockerfile=. We can just use the following command to build and create the container.
+** Setup your shell
+
+1. Find out what shell you are using by running the command =echo $SHELL=.
+2. It will be either bash or zsh.
+   1. If you are running =bash= add the next code block to =~/.bashrc=
+   2. If you are running =zsh= add the the next code block to =~/.zshrc=
+3. Clone this repository to your computer and add the full path to the location you cloned this repository and replacing the placeholder =<STEP-3>=.
 
 #+begin_src bash
+export ROS2_DOCKER_ENV=<STEP-3>
 
+ros_start() {
+    export ROS_PROJECT_PATH=$(pwd)
+    pushd $ROS2_DOCKER_ENV && docker compose -f docker-compose.linux.yml up -d --build && popd
+}
+
+ros_stop() {
+    pushd $ROS2_DOCKER_ENV && docker compose down && popd
+}
+
+ros_shell() {
+    docker exec -it ros2 /bin/zsh
+}
 #+end_src
-
-And this to get its shell.
-
-#+begin_src bash
-
-#+end_src
-
 
 #+begin_quote
-Since you use Linux I am expecting you to be familiar enough with the terminal to setup your own aliases.
+You need to restart your shell to load the changes. (or just source it)
 #+end_quote
+
+** Running the container
+
+You can type in =ros_start= to start the docker containers with the current directory being mounted into docker.
+
+Type =ros_shell= in the current terminal to enter your ros environment. You can keep spawing new terminals and entering =ros_shell= to have multiple shells.
+
+#+begin_quote
+You will need to run =xhost += in your shell to allow the docker container to open windows in your environment.
+
+If you are on wayland, make sure you have xwayland support and the =xorg.xhost= package installed.
+#+end_quote
+
+When you are finished, type =ros_stop= to shutdown the containers.
 
 
 * MacOS
@@ -38,18 +69,18 @@ Since you use Linux I am expecting you to be familiar enough with the terminal t
 2. It will be either bash or zsh.
    1. If you are running =bash= add the next code block to =~/.bashrc=
    2. If you are running =zsh= add the the next code block to =~/.zshrc=
-3. Add the full path to the location you cloned this repository and replacing the placeholder =<STEP-3>=.
+3. Clone this repository to your computer and add the full path to the location you cloned this repository and replacing the placeholder =<STEP-3>=.
 
 #+begin_src bash
 export ROS2_DOCKER_ENV=<STEP-3>
 
 ros_start() {
     export ROS_PROJECT_PATH=$(pwd)
-    cd $ROS2_DOCKER_ENV && docker compose up -d --build
+    pushd $ROS2_DOCKER_ENV && docker compose up -d --build && popd
 }
 
-ros_end() {
-    cd $ROS2_DOCKER_ENV && docker compose down
+ros_stop() {
+    pushd $ROS2_DOCKER_ENV && docker compose down && popd
 }
 
 ros_shell() {
@@ -71,10 +102,13 @@ Any GUI window opened will have to be viewed using the noVNC viewer at [[http://
 For a better VNC experience, in the settings toolbox, set the scaling mode to local.
 #+end_quote
 
-When you are finished, type =ros_end= to shutdown the containers.
+When you are finished, type =ros_stop= to shutdown the containers.
 
 
 * TODO Windows
 
-** Approaches and questions
-Have different branches for each different approach?
+* Setting up VSCode (Optional)
+
+This is optional since the only ability it grants is you is to open docker container terminals in an easier manner.
+
+You can just write your code in your preferred code editor directly from your ros2 workspace, but if you work with VSCode you can install the Dev Containers extension to connect to the ros2 docker container, so you can open terminals directly from vscode without having to run =ros_shell= (or its equivalent).
