@@ -53,7 +53,7 @@ You can type in =ros_start= to start the docker containers with the current dire
 Type =ros_shell= in the current terminal to enter your ros environment. You can keep spawing new terminals and entering =ros_shell= to have multiple shells.
 
 #+begin_quote
-You will need to run =xhost += in your shell to allow the docker container to open windows in your environment.
+You will need to run =xhost += in your shell to allow the docker container to open windows in your environment. You can add this to your =.bashrc= / =.zshrc= or run it everytime you run =ros_start=.
 
 If you are on wayland, make sure you have xwayland support and the =xorg.xhost= package installed.
 #+end_quote
