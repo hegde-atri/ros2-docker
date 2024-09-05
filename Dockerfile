@@ -66,7 +66,9 @@ RUN echo 'alias ssetup="source ./install/local_setup.zsh"' >> /root/.zshrc
 RUN echo 'alias cyclone="export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"' >> /root/.zshrc
 RUN echo 'alias fastdds="export RMW_IMPLEMENTATION=rmw_fastrtps_cpp"' >> /root/.zshrc
 RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> /root/.zshrc
+
 RUN echo 'export TURTLEBOT3_MODEL=waffle' >> /root/.zshrc
+RUN echo 'export ROS_DOMAIN_ID=30' >> /root/.zshrc
 
 RUN echo "autoload -U bashcompinit" >> /root/.zshrc
 RUN echo "bashcompinit" >> /root/.zshrc
