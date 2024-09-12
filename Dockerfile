@@ -7,7 +7,7 @@ ENV QT_X11_NO_MITSHM=1
 ENV EDITOR=nano
 # ENV XDG_RUNTIME_DIR=/tmp
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update && apt-get install -y \
     cmake \
     curl \
     gazebo \
