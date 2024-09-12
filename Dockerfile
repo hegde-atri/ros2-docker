@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
     vim \
     python3-pip \
     python3-pydantic \
-    ros-humble-desktop \
     ros-dev-tools \
     ros-humble-cartographer \
     ros-humble-cartographer-ros \
@@ -26,14 +25,24 @@ RUN apt-get update && apt-get install -y \
     ros-humble-turtlebot3-msgs \
     ros-humble-turtlebot3-simulations \
     ros-humble-turtlebot3-gazebo \
-    python3-rosdep \
-    python3-colcon-common-extensions \
+    ros-humble-joint-state-publisher \
+    ros-humble-robot-localization \
+    ros-humble-plotjuggler-ros \
+    ros-humble-robot-state-publisher \
+    ros-humble-ros2bag \
+    ros-humble-rosbag2-storage-default-plugins \
+    ros-humble-rmw-fastrtps-cpp \
+    ros-humble-rmw-cyclonedds-cpp \
+    ros-humble-slam-toolbox \
     ros-humble-rqt* \
     ros-humble-librealsense2* \
     ros-humble-realsense2-* \
-    ffmpeg \
     ros-humble-dynamixel-sdk \
     ros-humble-gazebo-* \
+    ros-humble-turtlesim \
+    python3-rosdep \
+    python3-colcon-common-extensions \
+    ffmpeg \
     rviz \
     tmux \
     wget \
