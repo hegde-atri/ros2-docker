@@ -3,6 +3,8 @@ services:
     container_name: ros2
     image: ros2
     build: ./
+    volumes:
+      - ${VOLUME_MAPPING}
     environment:
       - DISPLAY=novnc:0.0
     networks:
