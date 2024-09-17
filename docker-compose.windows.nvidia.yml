@@ -1,0 +1,38 @@
+
+services:
+  ros_dev_env:
+    container_name: ros2
+    image: ros2
+    build: ./
+    volumes:
+      - ${VOLUME_MAPPING}
+    environment:
+      - DISPLAY=novnc:0.0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    networks:
+      - x11
+    stdin_open: true
+    tty: true
+    command: /bin/zsh
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  novnc:
+    image: theasp/novnc:latest
+    environment:
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1200
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+    restart: on-failure
+
+networks:
+  x11:
