@@ -3,7 +3,7 @@
 #+author: Atri Hegde
 
 * Preface
-
+ROS2 Humble Development Container. Unfortunately poor performance on macOS and Windows(AMD Graphics Card) due to hardware acceleration being unsupported.
 * Table of Contents :TOC:
 - [[#preface][Preface]]
 - [[#linux][Linux]]
@@ -60,9 +60,10 @@ If you are on wayland, make sure you have xwayland support and the =xorg.xhost= 
 
 When you are finished, type =ros_stop= to shutdown the containers.
 
-
 * MacOS
-
+#+begin_quote
+Docker Desktop doesn't support GPU acceleration on macOS :(
+#+end_quote
 ** Setup your shell
 
 1. Find out what shell you are using by running the command =echo $SHELL=.
@@ -104,8 +105,12 @@ For a better VNC experience, in the settings toolbox, set the scaling mode to lo
 
 When you are finished, type =ros_stop= to shutdown the containers.
 
+* Windows
+#+begin_quote
+Docker Desktop doesn't support GPU acceleration properly.
+#+end_quote
 
-* TODO Windows
+Please amend windows.ps1 to use the correct docker-compose file and import it using =. .\windows.ps1=. Then run =ROS2= to see the command list.
 
 * Setting up VSCode (Optional)
 
