@@ -51,11 +51,31 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
 
 RUN pip3 install setuptools==58.2.0
 
+RUN apt-get install -y \
+    mesa-utils \
+    libegl1-mesa-dev \
+    libgl1-mesa-dev \
+    libgles2-mesa-dev
+
+
 RUN apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
+
+RUN useradd -ms /bin/zsh student \
+  && echo "student:password" | chpasswd
+USER student
+
+WORKDIR /home/student
+
+RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
+WORKDIR /home/student/tuos_ros
+RUN colcon build --symlink-install
+
+RUN mkdir ~/ros2_ws
+WORKDIR /home/student/ros2_ws
 
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
 RUN echo 'echo "You are in the BASH shell."' >> ~/.bashrc
@@ -64,22 +84,22 @@ RUN echo 'echo "Return to the ZSH shell by running zsh"' >> ~/.bashrc
 
 RUN echo 'eval "$(starship init zsh)"' >> ~/.zshrc
 
-RUN echo "export DISABLE_AUTO_TITLE=true" >> /root/.zshrc
-RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> /root/.zshrc
-RUN echo "source /opt/ros/humble/setup.zsh" >> /root/.zshrc
-RUN echo "source /usr/share/gazebo/setup.sh" >> /root/.zshrc
+RUN echo "export DISABLE_AUTO_TITLE=true" >> ~/.zshrc
+RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> ~/.zshrc
+RUN echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
+RUN echo "source /usr/share/gazebo/setup.sh" >> ~/.zshrc
 
-RUN echo 'alias rosdi="rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y"' >> /root/.zshrc
-RUN echo 'alias cbuild="colcon build --symlink-install"' >> /root/.zshrc
-RUN echo 'alias ssetup="source ./install/local_setup.zsh"' >> /root/.zshrc
-RUN echo 'alias cyclone="export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"' >> /root/.zshrc
-RUN echo 'alias fastdds="export RMW_IMPLEMENTATION=rmw_fastrtps_cpp"' >> /root/.zshrc
-RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> /root/.zshrc
+RUN echo 'alias rosdi="rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y"' >> ~/.zshrc
+RUN echo 'alias cbuild="colcon build --symlink-install"' >> ~/.zshrc
+RUN echo 'alias ssetup="source ./install/local_setup.zsh"' >> ~/.zshrc
+RUN echo 'alias cyclone="export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"' >> ~/.zshrc
+RUN echo 'alias fastdds="export RMW_IMPLEMENTATION=rmw_fastrtps_cpp"' >> ~/.zshrc
+RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.zshrc
 
-RUN echo 'export TURTLEBOT3_MODEL=waffle' >> /root/.zshrc
-RUN echo 'export ROS_DOMAIN_ID=30' >> /root/.zshrc
+RUN echo 'export TURTLEBOT3_MODEL=waffle' >> ~/.zshrc
+RUN echo 'export ROS_DOMAIN_ID=30' >> ~/.zshrc
 
-RUN echo "autoload -U bashcompinit" >> /root/.zshrc
-RUN echo "bashcompinit" >> /root/.zshrc
-RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> /root/.zshrc
-RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> /root/.zshrc
+RUN echo "autoload -U bashcompinit" >> ~/.zshrc
+RUN echo "bashcompinit" >> ~/.zshrc
+RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.zshrc
+RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.zshrc
