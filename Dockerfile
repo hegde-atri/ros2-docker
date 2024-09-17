@@ -68,12 +68,6 @@ RUN useradd -ms /bin/zsh student \
   && echo "student:password" | chpasswd
 USER student
 
-WORKDIR /home/student
-
-RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
-WORKDIR /home/student/tuos_ros
-RUN colcon build --symlink-install
-
 RUN mkdir ~/ros2_ws
 WORKDIR /home/student/ros2_ws
 
@@ -103,3 +97,14 @@ RUN echo "autoload -U bashcompinit" >> ~/.zshrc
 RUN echo "bashcompinit" >> ~/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.zshrc
+
+# Build any additional packages.
+
+WORKDIR /home/student
+RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
+
+SHELL ["/bin/zsh", "-c"]
+RUN source ~/.zshrc && colcon build --symlink-install
+
+WORKDIR /home/student/tuos_ros
+RUN colcon build --symlink-install
