@@ -104,7 +104,7 @@ WORKDIR /home/student
 RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
 
 SHELL ["/bin/zsh", "-c"]
-RUN source ~/.zshrc && colcon build --symlink-install
 
 WORKDIR /home/student/tuos_ros
-RUN colcon build --symlink-install
+RUN git checkout humble
+RUN source ~/.zshrc && colcon build --symlink-install
