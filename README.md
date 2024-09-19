@@ -1,4 +1,4 @@
-[![](https://img.shields.io/github/actions/workflow/status/hegde-atri/ros2-docker/docker-publish.yml.svg)](Build Status)
+![](https://img.shields.io/github/actions/workflow/status/hegde-atri/ros2-docker/docker-publish.yml.svg)
 
 # Preface
 
@@ -45,6 +45,7 @@ ros_stop() {
 }
 
 ros_shell() {
+    echo "Launching ROS Shell, type 'exit' to exit the shell once you are done."
     docker exec -it ros2 /bin/zsh
 }
 ```
@@ -99,6 +100,7 @@ ros_stop() {
 }
 
 ros_shell() {
+    echo "Launching ROS Shell, type 'exit' to exit the shell once you are done."
     docker exec -it ros2 /bin/zsh
 }
 ```
