@@ -108,3 +108,5 @@ SHELL ["/bin/zsh", "-c"]
 WORKDIR /home/student/tuos_ros
 RUN git checkout humble
 RUN source ~/.zshrc && colcon build --symlink-install
+
+WORKDIR /home/student/ros2_ws
