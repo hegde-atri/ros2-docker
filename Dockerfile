@@ -107,6 +107,6 @@ WORKDIR /home/student/tuos_ros
 RUN git checkout humble
 RUN source ~/.zshrc && colcon build --symlink-install
 
-ENV COLCON_PREFIX_PATH=/home/student/ros2_ws
+ENV COLCON_PREFIX_PATH=/home/student/ros2_ws/src
 
 WORKDIR /home/student/ros2_ws
