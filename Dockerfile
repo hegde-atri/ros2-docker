@@ -68,9 +68,7 @@ RUN useradd -ms /bin/zsh student \
   && echo "student:password" | chpasswd
 USER student
 
-ENV COLCON_PREFIX_PATH=/opt/ros/humble:/home/student/tuos_ros/src:/home/student/ros2_ws/src
-
-RUN mkdir ~/ros2_ws
+RUN mkdir -p ~/ros2_ws/src
 WORKDIR /home/student/ros2_ws
 
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
@@ -101,14 +99,14 @@ RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.zshrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.zshrc
 
 # Build any additional packages.
-
 WORKDIR /home/student
 RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
-
 SHELL ["/bin/zsh", "-c"]
 
 WORKDIR /home/student/tuos_ros
 RUN git checkout humble
 RUN source ~/.zshrc && colcon build --symlink-install
+
+ENV COLCON_PREFIX_PATH=/home/student/ros2_ws
 
 WORKDIR /home/student/ros2_ws
