@@ -6,7 +6,7 @@ services:
     volumes:
       - type: bind
         source: ${ROS_PROJECT_PATH}
-        target: /ros2_ws
+        target: /home/student/ros2_ws
     environment:
       - DISPLAY=novnc:0.0
     networks:
