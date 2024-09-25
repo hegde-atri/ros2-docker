@@ -68,7 +68,7 @@ RUN useradd -ms /bin/zsh student \
   && echo "student:password" | chpasswd
 USER student
 
-ENV COLCON_PREFIX_PATH=/opt/ros/humble:/home/student/tuos_ros:/home/student/ros2_ws
+ENV COLCON_PREFIX_PATH=/opt/ros/humble:/home/student/tuos_ros/src:/home/student/ros2_ws/src
 
 RUN mkdir ~/ros2_ws
 WORKDIR /home/student/ros2_ws
