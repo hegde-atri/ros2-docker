@@ -1,3 +1,5 @@
+# ROS2 Humble Development Container 
+
 ![](https://img.shields.io/github/actions/workflow/status/hegde-atri/ros2-docker/docker-publish.yml.svg)
 
 # Preface
@@ -50,6 +52,7 @@ ros_shell() {
 }
 ```
 
+> [!INFO]
 > You need to restart your shell to load the changes. (or just source
 > it)
 
@@ -62,6 +65,7 @@ Type `ros_shell` in the current terminal to enter your ros environment.
 You can keep spawing new terminals and entering `ros_shell` to have
 multiple shells.
 
+> [!IMPORTANT]
 > You will need to run `xhost +` in your shell to allow the docker
 > container to open windows in your environment. You can add this to
 > your `.bashrc` / `.zshrc` or run it everytime you run `ros_start`.
@@ -116,6 +120,7 @@ Type `ros_shell` in the current terminal to enter your ros environment.
 You can keep spawing new terminals and entering `ros_shell` to have
 multiple shells.
 
+> [!IMPORTANT]
 > Any GUI window opened will have to be viewed using the noVNC viewer at
 > <http://localhost:8080/vnc.html>
 >
@@ -126,11 +131,18 @@ When you are finished, type `ros_stop` to shutdown the containers.
 
 # Windows
 
+> [!NOTE]
 > Docker Desktop doesn't support GPU acceleration properly.
 
-Please amend windows.ps1 to use the correct docker-compose file and
-import it using `. .\windows.ps1`. Then run `ROS2` to see the command
-list.
+The instructions here are a bit unclear at the moment due to not being able to test it on everysinglde different type of hardware.
+
+1. First clone this repository onto your computer to a location of your choice
+2. Please update the windows.ps1 file in the download to have the the location to where you cloned the repository for `ROS2_DOCKER_ENV`
+3. OPTIONAL: In `windows.ps1`, make sure the correct docker-compose file name is used  in `ROS2_DOCKER_COMPOSE_START_COMMAND` if you have Intel or Nvidia graphics.
+4. Import the file using `. .\windows.ps1`. Then run `ROS2` to see the command list.
+
+> [!WARNING]
+> Intel and Nvidia variants of the windows docker-compose files are not tested. Please open an issue if you run into any errors.
 
 # Setting up VSCode (Optional)
 
@@ -141,4 +153,4 @@ You can just write your code in your preferred code editor directly from
 your ros2 workspace, but if you work with VSCode you can install the Dev
 Containers extension to connect to the ros2 docker container, so you can
 open terminals directly from vscode without having to run `ros_shell`
-(or its equivalent).
+(or its equivalent for windows).
