@@ -18,6 +18,8 @@ unsupported.
   - [Setup your shell](#setup-your-shell-1)
   - [Running the containers](#running-the-containers)
 - [Windows](#windows)
+  - [Setup your shell](#setup-your-shell-2)
+  - [Running the containers](#running-the-containers-1)
 - [Setting up VSCode (Optional)](#setting-up-vscode-optional)
 
 # Linux
@@ -136,13 +138,31 @@ When you are finished, type `ros_stop` to shutdown the containers.
 
 The instructions here are a bit unclear at the moment due to not being able to test it on everysinglde different type of hardware.
 
+## Setup your shell
+
 1. First clone this repository onto your computer to a location of your choice
 2. Please update the windows.ps1 file in the download to have the the location to where you cloned the repository for `ROS2_DOCKER_ENV`
-3. OPTIONAL: In `windows.ps1`, make sure the correct docker-compose file name is used  in `ROS2_DOCKER_COMPOSE_START_COMMAND` if you have Intel or Nvidia graphics.
-4. Import the file using `. .\windows.ps1`. Then run `ROS2` to see the command list.
+3. OPTIONAL: In `windows.ps1`, make sure the correct docker-compose file name is used  in `ROS2_DOCKER_COMPOSE_START_COMMAND` if you have Intel or Nvidia graphics
+4. Import the file using `. .\windows.ps1`. Then run `ROS2` to see the command list
 
 > [!WARNING]
 > Intel and Nvidia variants of the windows docker-compose files are not tested. Please open an issue if you run into any errors.
+
+## Running the containers
+
+Always make sure to import the `windows.ps1` file (Step 4 from Setup your shell) before running any of the commands below.
+
+1. Run `ROS2` - if you get a list of ROS2 commands, you've imported the file correctly.
+2. `Start-ROS2`: Run this command in your ROS2 project/workspace directory. It will be the folder you can edit from within the container
+3. `Enter-ROS2`: Run this command to open the shell in the running ROS2 container
+4. `Stop-ROS2`: Run this command to stop the ROS2 containers
+
+> [!IMPORTANT]
+> Any GUI window opened will have to be viewed using the noVNC viewer at
+> <http://localhost:8080/vnc.html>
+>
+> For a better VNC experience, in the settings toolbox, set the scaling
+> mode to local.
 
 # Setting up VSCode (Optional)
 
