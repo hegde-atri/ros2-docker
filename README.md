@@ -21,6 +21,7 @@ unsupported.
   - [Setup your shell](#setup-your-shell-2)
   - [Running the containers](#running-the-containers-1)
 - [Setting up VSCode (Optional)](#setting-up-vscode-optional)
+- [Other Information](#other-information)
 
 # Prerequisites
 
@@ -173,3 +174,7 @@ Containers extension to connect to the ros2 docker container, so you can
 open terminals directly from vscode without having to run `ros_shell`
 (or its equivalent for windows).
 
+
+# Other Information
+
+- The password for the student user is `password`.

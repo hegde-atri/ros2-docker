@@ -1,7 +1,7 @@
 FROM osrf/ros:humble-desktop-full
 
-ARG WORKSPACE=/home/student/ros2_ws
-WORKDIR /ros2_ws
+ARG WORKSPACE=/home/student/ros2_ws/workspace
+WORKDIR /ros2_ws/src
 
 ENV QT_X11_NO_MITSHM=1
 ENV EDITOR=nano
@@ -46,8 +46,7 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
     rviz \
     tmux \
     wget \
-    xorg-dev \
-    zsh
+    xorg-dev
 
 RUN pip3 install setuptools==58.2.0
 
@@ -66,67 +65,54 @@ RUN apt-get autoremove -y \
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
 
 RUN useradd -ms /bin/zsh student \
-  && echo "student:password" | chpasswd
+    && echo "student:password" | chpasswd
 
 RUN apt-get update && apt-get install -y sudo && \
-usermod -aG sudo student && \
-echo "student ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-apt-get clean && \
-rm -rf /var/lib/apt/lists/*
+    usermod -aG sudo student && \
+    echo "student ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 USER student
 
 RUN mkdir -p ~/ros2_ws/src
-WORKDIR /home/student/ros2_ws
+WORKDIR /home/student/ros2_ws/src
 
 # Switch to bash
 
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
-RUN echo 'echo "You are in the BASH shell."' >> ~/.bashrc
-RUN echo 'echo "This is not configured for ROS2 Development"' >> ~/.bashrc
-RUN echo 'echo "Return to the ZSH shell by running zsh"' >> ~/.bashrc
+RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
 
-RUN echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+RUN echo 'alias rosdi="rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y"' >> ~/.bashrc
+RUN echo 'alias cbuild="colcon build --symlink-install"' >> ~/.bashrc
+RUN echo 'alias ssetup="source ./install/local_setup.bash"' >> ~/.bashrc
+RUN echo 'alias cyclone="export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"' >> ~/.bashrc
+RUN echo 'alias fastdds="export RMW_IMPLEMENTATION=rmw_fastrtps_cpp"' >> ~/.bashrc
+RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.bashrc
 
-RUN echo "export DISABLE_AUTO_TITLE=true" >> ~/.zshrc
-RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> ~/.zshrc
-RUN echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
-RUN echo "source /usr/share/gazebo/setup.sh" >> ~/.zshrc
+RUN echo 'export TURTLEBOT3_MODEL=waffle' >> ~/.bashrc
+RUN echo 'export ROS_DOMAIN_ID=1' >> ~/.bashrc
 
-RUN echo 'alias rosdi="rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y"' >> ~/.zshrc
-RUN echo 'alias cbuild="colcon build --symlink-install"' >> ~/.zshrc
-RUN echo 'alias ssetup="source ./install/local_setup.zsh"' >> ~/.zshrc
-RUN echo 'alias cyclone="export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp"' >> ~/.zshrc
-RUN echo 'alias fastdds="export RMW_IMPLEMENTATION=rmw_fastrtps_cpp"' >> ~/.zshrc
-RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.zshrc
-
-RUN echo 'export TURTLEBOT3_MODEL=waffle' >> ~/.zshrc
-RUN echo 'export ROS_DOMAIN_ID=1' >> ~/.zshrc
-
-RUN echo "autoload -U bashcompinit" >> ~/.zshrc
-RUN echo "bashcompinit" >> ~/.zshrc
-RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.zshrc
-RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.zshrc
+RUN echo "[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion" >> ~/.bashrc
+RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.bashrc
+RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.bashrc
 
 # Build any additional packages.
 WORKDIR /home/student/ros2_ws/src
 RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
-SHELL ["/bin/zsh", "-c"]
 
 # ENV COLCON_PREFIX_PATH=/home/student/ros2_ws/src
 # WORKDIR /home/student/ros2_ws/src/tuos_ros
 # RUN git checkout humble
 # WORKDIR /home/student/ros2_ws
 # RUN source ~/.zshrc && colcon build --symlink-install
-
 # RUN echo 'source /home/student/ros2_ws/install/local_setup.zsh' >> ~/.zshrc
 
-
-# sort out aliases
-# RUN echo "alias roscd="cd ~/ros2_ws/src"
-
-# alias tb3_teleop="ros2 run turtlebot3_teleop teleop_keyboard"
-# alias tb3_world="ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py"
-# alias tb3_sim="ros2 launch turtlebot3_gazebo empty_world.launch.py"
-# alias tb3_slam="ros2 launch turtlebot3_cartographer cartographer.launch.py"
-# alias tb3_rviz="ros2 launch tuos_simulations rviz.launch"
+RUN echo 'alias roscd="cd ~/ros2_ws/src"' >> ~/.bashrc
+RUN echo 'alias tb3_teleop="ros2 run turtlebot3_teleop teleop_keyboard"' >> ~/.bashrc
+RUN echo 'alias tb3_world="ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py"' >> ~/.bashrc
+RUN echo 'alias tb3_sim="ros2 launch turtlebot3_gazebo empty_world.launch.py"' >> ~/.bashrc
+RUN echo 'alias tb3_slam="ros2 launch turtlebot3_cartographer cartographer.launch.py"' >> ~/.bashrc
+RUN echo 'alias tb3_rviz="ros2 launch tuos_simulations rviz.launch"' >> ~/.bashrc

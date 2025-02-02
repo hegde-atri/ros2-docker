@@ -10,5 +10,5 @@ ros_stop() {
 }
 
 ros_shell() {
-    docker exec -it ros2 /bin/zsh
+    docker exec -it ros2 /bin/bash
 }
