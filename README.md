@@ -63,7 +63,7 @@ ros_shell() {
 }
 ```
 
-> [!INFO]
+> [!NOTE]
 > You need to restart your shell to load the changes (or just source it)
 
 ## Running the container
