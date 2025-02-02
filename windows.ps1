@@ -4,7 +4,7 @@ function Set-ROS2 {
     $env:ROS2_DOCKER_ENV = "C:\Users\iamat\Documents\repos\ros2-docker"
     $env:ROS2_DOCKER_COMPOSE_START_COMMAND = "docker compose -f docker-compose.windows.yml up -d --build"
     $env:ROS2_DOCKER_COMPOSE_STOP_COMMAND = "docker compose down"
-    $env:ROS2_DOCKER_SHELL_COMMAND = "docker exec -it ros2 /bin/zsh"
+    $env:ROS2_DOCKER_SHELL_COMMAND = "docker exec -it ros2 /bin/bash"
 
     Write-Host "ROS2 development env-variables are set:"
     Write-Host "VOLUME_MAPPING: $env:VOLUME_MAPPING"
