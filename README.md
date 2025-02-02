@@ -32,6 +32,8 @@ Before starting, ensure Docker is installed on your system following the instruc
 > [!IMPORTANT]
 > You must first install Docker from your distribution's package manager (not Docker Desktop!). For Ubuntu users, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) to install Docker.
 
+> Expected performance is 60fps in gazebo.
+
 ## Setup your shell
 
 1. Find out what shell you are using by running the command `echo $SHELL`.
@@ -78,6 +80,8 @@ Type `ros_shell` in the current terminal to enter your ros environment.
 > [!IMPORTANT]
 > You must install Docker Desktop for Mac and ensure it is running before proceeding.
 > Docker Desktop doesn't support GPU acceleration on macOS.
+
+> Expected performance is 15-20fps in gazebo
 
 ## Setup your shell
 

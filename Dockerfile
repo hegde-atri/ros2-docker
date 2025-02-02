@@ -57,14 +57,7 @@ RUN apt-get install -y \
     libgles2-mesa-dev \
     python3-pandas
 
-
-RUN apt-get autoremove -y \
-    && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes
-
-RUN useradd -ms /bin/zsh student \
+RUN useradd -ms /bin/bash student \
     && echo "student:password" | chpasswd
 
 RUN apt-get update && apt-get install -y sudo && \
@@ -73,14 +66,27 @@ RUN apt-get update && apt-get install -y sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN apt-get autoremove -y \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# Try to install starship, but don't fail if it doesn't work
+RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes || true
+
 USER student
+# Disable sudo warning
+RUN touch ~/.hushlogin
 
 RUN mkdir -p ~/ros2_ws/src
 WORKDIR /home/student/ros2_ws/src
 
 # Switch to bash
 
-RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
+# Only add starship init if starship was successfully installed
+RUN if [ -f "/usr/local/bin/starship" ]; then \
+    echo 'eval "$(starship init bash)"' >> ~/.bashrc; \
+    fi
 RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
