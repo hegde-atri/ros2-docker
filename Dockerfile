@@ -1,6 +1,6 @@
 FROM osrf/ros:humble-desktop-full
 
-ARG WORKSPACE=/home/student/ros2_ws/workspace
+ARG WORKSPACE=/home/student/ros2_ws/src
 WORKDIR /ros2_ws/src
 
 ENV QT_X11_NO_MITSHM=1

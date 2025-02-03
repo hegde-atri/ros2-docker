@@ -7,7 +7,7 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - type: bind
         source: ${ROS_PROJECT_PATH}
-        target: /home/student/ros2_ws
+        target: /home/student/ros2_ws/src
     environment:
       - DISPLAY=$DISPLAY
     networks:
