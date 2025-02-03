@@ -57,6 +57,8 @@ RUN apt-get install -y \
     libgles2-mesa-dev \
     python3-pandas
 
+
+
 RUN useradd -ms /bin/bash student \
     && echo "student:password" | chpasswd
 
@@ -90,6 +92,9 @@ RUN if [ -f "/usr/local/bin/starship" ]; then \
 RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
+# Enable colcon_cd
+RUN echo 'source /usr/share/colcon_cd/function/colcon_cd.sh' >> ~/.bashrc
+RUN echo 'export _colcon_cd_root=/home/student/ros2_ws' >> ~/.bashrc
 
 RUN echo 'alias rosdi="rosdep install --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y"' >> ~/.bashrc
 RUN echo 'alias cbuild="colcon build --symlink-install"' >> ~/.bashrc
