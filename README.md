@@ -21,7 +21,7 @@ unsupported.
   - [Setup your shell](#setup-your-shell-2)
   - [Running the containers](#running-the-containers-1)
 - [Setting up VSCode (Optional)](#setting-up-vscode-optional)
-- [Other Information](#other-information)
+- [FAQ](#faq)
 
 # Prerequisites
 
@@ -180,6 +180,7 @@ open terminals directly from vscode without having to run `ros_shell`
 (or its equivalent for windows).
 
 
-# Other Information
+# FAQ
 
+- If you cannot open Docker desktop on MacOS and its being marked as malware - follow this issue https://github.com/docker/for-mac/issues/7520
 - The password for the student user is `password`.

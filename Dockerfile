@@ -107,7 +107,7 @@ RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.bashrc
 
 # Build any additional packages.
 WORKDIR /home/student/ros2_ws/src
-RUN git clone https://github.com/tom-howard/tuos_ros.git tuos_ros
+RUN git clone -b humble https://github.com/tom-howard/tuos_ros.git tuos_ros
 
 # ENV COLCON_PREFIX_PATH=/home/student/ros2_ws/src
 # WORKDIR /home/student/ros2_ws/src/tuos_ros
