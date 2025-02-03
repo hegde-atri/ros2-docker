@@ -78,7 +78,7 @@ USER student
 # Disable sudo warning
 RUN touch ~/.hushlogin
 
-RUN mkdir -p ~/ros2_ws/src
+RUN mkdir -p ~/ros2_ws/src/com2009
 WORKDIR /home/student/ros2_ws/src
 
 # Switch to bash
