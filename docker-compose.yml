@@ -7,6 +7,7 @@ services:
       - type: bind
         source: ${ROS_PROJECT_PATH}
         target: /home/student/ros2_ws/src/com2009
+      - ros2_workspace:/home/student/ros2_ws
     environment:
       - DISPLAY=novnc:0.0
     networks:
@@ -25,3 +26,6 @@ services:
     restart: on-failure
 networks:
   x11:
+
+volumes:
+  ros2_workspace:
