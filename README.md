@@ -55,7 +55,7 @@ ros_start() {
     export ROS_PROJECT_PATH=$(pwd)
     cd $ROS2_DOCKER_ENV
     git pull
-    docker compose up -d --build
+    docker compose -f docker-compose.linux.yml up -d --build
     cd $ROS_PROJECT_PATH
     xhost +local:root
 }
