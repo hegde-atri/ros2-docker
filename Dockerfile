@@ -89,6 +89,7 @@ WORKDIR /home/student/ros2_ws/src
 RUN if [ -f "/usr/local/bin/starship" ]; then \
     echo 'eval "$(starship init bash)"' >> ~/.bashrc; \
     fi
+RUN echo 'if [ -f "$HOME/ros2_ws/install/setup.bash" ]; then\n    source $HOME/ros2_ws/install/setup.bash\nfi' >> ~/.bashrc
 RUN echo 'LC_NUMERIC="en_US.UTF-8"' >> ~/.bashrc
 RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 RUN echo "source /usr/share/gazebo/setup.sh" >> ~/.bashrc
@@ -111,9 +112,8 @@ RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.bashrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.bashrc
 
 # Build any additional packages.
-WORKDIR /home/student/ros2_ws/src
-RUN git clone -b humble https://github.com/tom-howard/tuos_ros.git tuos_ros
-
+# WORKDIR /home/student/ros2_ws/src
+# RUN git clone -b humble https://github.com/tom-howard/tuos_ros.git tuos_ros
 # ENV COLCON_PREFIX_PATH=/home/student/ros2_ws/src
 # WORKDIR /home/student/ros2_ws/src/tuos_ros
 # RUN git checkout humble

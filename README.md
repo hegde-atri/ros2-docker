@@ -49,7 +49,10 @@ export ROS2_DOCKER_ENV=<STEP-3>
 
 ros_start() {
     export ROS_PROJECT_PATH=$(pwd)
-    cd $ROS2_DOCKER_ENV && docker compose up -d --build && cd $ROS_PROJECT_PATH
+    cd $ROS2_DOCKER_ENV
+    git pull
+    docker compose up -d --build
+    cd $ROS_PROJECT_PATH
     xhost +local:root
 }
 
@@ -78,10 +81,9 @@ Type `ros_shell` in the current terminal to enter your ros environment.
 # MacOS
 
 > [!IMPORTANT]
-> You must install Docker Desktop for Mac and ensure it is running before proceeding.
-> Docker Desktop doesn't support GPU acceleration on macOS.
+> You must install Docker Desktop for Mac and ensure it is running before proceeding. [Install link for Docker Desktop](https://docs.docker.com/desktop/setup/install/mac-install/) 
 
-> Expected performance is 15-20fps in gazebo
+> Expected performance is 15-20fps in gazebo or even less. This is because Docker Desktop doesn't support GPU acceleration on macOS.
 
 ## Setup your shell
 
@@ -100,8 +102,10 @@ export ROS2_DOCKER_ENV=<STEP-3>
 
 ros_start() {
     export ROS_PROJECT_PATH=$(pwd)
-    cd $ROS2_DOCKER_ENV && docker compose up -d --build && cd $ROS_PROJECT_PATH
-    xhost +local:root
+    cd $ROS2_DOCKER_ENV
+    git pull
+    docker compose up -d --build
+    cd $ROS_PROJECT_PATH
 }
 
 ros_stop() {

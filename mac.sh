@@ -2,7 +2,10 @@
 
 ros_start() {
     export ROS_PROJECT_PATH=$(pwd)
-    cd $ROS2_DOCKER_ENV && docker compose up -d --build && cd $ROS_PROJECT_PATH
+    cd $ROS2_DOCKER_ENV
+    git pull
+    docker compose up -d --build
+    cd $ROS_PROJECT_PATH
 }
 
 ros_stop() {
