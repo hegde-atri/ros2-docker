@@ -25,7 +25,11 @@ unsupported.
 
 # Prerequisites
 
-Before starting, ensure Docker is installed on your system following the instructions for your platform below.
+Clone this repository using the command below in a location your prefer. You will need to remember this location.
+
+``` bash
+git clone https://github.com/hegde-atri/ros2-docker --depth 1
+```
 
 # Linux
 
@@ -71,7 +75,7 @@ ros_shell() {
 
 ## Running the container
 
-You can type in `ros_start` to start the docker containers with the current directory being mounted into docker.
+You can type in `ros_start` to start the docker containers with the current directory being mounted into docker (usually your package directory).
 
 Type `ros_shell` in the current terminal to enter your ros environment.
 
@@ -123,7 +127,7 @@ Now restart your shell.
 ## Running the containers
 
 You can type in `ros_start` to start the docker containers with the
-current directory being your `ros2_ws/src` directory. (or its equivalent)
+current directory being your package directory.
 
 Type `ros_shell` in the current terminal to enter your ros environment.
 You can keep spawing new terminals and entering `ros_shell` to have
