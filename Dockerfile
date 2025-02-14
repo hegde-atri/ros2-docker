@@ -6,6 +6,15 @@ WORKDIR /ros2_ws/src
 ENV QT_X11_NO_MITSHM=1
 ENV EDITOR=nano
 # ENV XDG_RUNTIME_DIR=/tmp
+ENV ARCH=amd64
+ENV QEMU_EXECVE=1
+
+# Add these packages to your apt-get install
+RUN apt-get update && apt-get install -y \
+    qemu-user \
+    qemu-user-static \
+    binfmt-support
+
 
 RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update && apt-get install -y \
     cmake \
