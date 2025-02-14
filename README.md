@@ -35,7 +35,8 @@ git clone https://github.com/hegde-atri/ros2-docker --depth 1
 
 > [!IMPORTANT]
 > You must first install Docker from your distribution's package manager (not Docker Desktop!). For Ubuntu users, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) to install Docker.
-> If you are using Arch Linux or one of its derivatives (Manjaro, EndeavourOS, Artix, etc), you must also install `docker-compose`. This is a separate package in Arch's repositories to `docker`, unlike in other distributions where `compose` is within the `docker` package.
+>
+> If you are using a distribution which has `pacman` as its package manager, most commonly Arch Linux and its derivatives (Manjaro, EndeavourOS, Artix, etc), you must also install `docker-compose`. This is a separate package in Arch's repositories to `docker`, unlike in other distributions where `compose` is within the `docker` package.
 
 > Expected performance is 60fps in gazebo.
 
