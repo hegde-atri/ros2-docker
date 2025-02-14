@@ -5,16 +5,6 @@ WORKDIR /ros2_ws/src
 
 ENV QT_X11_NO_MITSHM=1
 ENV EDITOR=nano
-# ENV XDG_RUNTIME_DIR=/tmp
-ENV ARCH=amd64
-ENV QEMU_EXECVE=1
-
-# Add these packages to your apt-get install
-RUN apt-get update && apt-get install -y \
-    qemu-user \
-    qemu-user-static \
-    binfmt-support
-
 
 RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update && apt-get install -y \
     cmake \
@@ -67,8 +57,7 @@ RUN apt-get install -y \
     python3-pandas \
     net-tools \
     iputils-ping \
-    iproute2 \
-    network-manager
+    iproute2
 
 ENV CYCLONEDDS_URI='<CycloneDDS><Domain><General><AllowMulticast>false</AllowMulticast><NetworkInterfaceAddress>lo</NetworkInterfaceAddress><EnableMulticastLoopback>true</EnableMulticastLoopback></General></Domain></CycloneDDS>'
 
@@ -143,8 +132,6 @@ RUN echo 'alias disable_multicast="export CYCLONEDDS_URI='"'"'<CycloneDDS><Domai
 RUN echo 'alias local_only="export ROS_LOCALHOST_ONLY=1"' >> ~/.bashrc
 RUN echo 'alias fix_gazebo="export IGN_IP=127.0.0.1 && export GAZEBO_IP=127.0.0.1"' >> ~/.bashrc
 RUN echo 'alias local_gazebo="export GAZEBO_MASTER_URI=http://127.0.0.1:11345"' >> ~/.bashrc
-
-
 
 # Build any additional packages.
 # WORKDIR /home/student/ros2_ws/src
