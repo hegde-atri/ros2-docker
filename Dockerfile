@@ -61,6 +61,17 @@ RUN apt-get install -y \
     iproute2 \
     network-manager
 
+ENV CYCLONEDDS_URI='<CycloneDDS><Domain><General><AllowMulticast>false</AllowMulticast><NetworkInterfaceAddress>lo</NetworkInterfaceAddress><EnableMulticastLoopback>true</EnableMulticastLoopback></General></Domain></CycloneDDS>'
+
+RUN echo 'check_gazebo() {\n\
+    echo "Testing Gazebo configuration..."\n\
+    echo "IGN_IP: $IGN_IP"\n\
+    echo "GAZEBO_IP: $GAZEBO_IP"\n\
+    echo "GAZEBO_MASTER_URI: $GAZEBO_MASTER_URI"\n\
+    echo "GAZEBO_MODEL_PATH: $GAZEBO_MODEL_PATH"\n\
+}' >> ~/.bashrc
+
+RUN echo 'alias gz_check=check_gazebo' >> ~/.bashrc
 
 
 
@@ -121,6 +132,9 @@ RUN echo 'alias check_interface="ifconfig"' >> ~/.bashrc
 RUN echo 'alias ros_domain="export ROS_DOMAIN_ID=0"' >> ~/.bashrc
 RUN echo 'alias disable_multicast="export CYCLONEDDS_URI='"'"'<CycloneDDS><Domain><General><AllowMulticast>false</AllowMulticast></General></Domain></CycloneDDS>'"'"'"' >> ~/.bashrc
 RUN echo 'alias local_only="export ROS_LOCALHOST_ONLY=1"' >> ~/.bashrc
+RUN echo 'alias fix_gazebo="export IGN_IP=127.0.0.1 && export GAZEBO_IP=127.0.0.1"' >> ~/.bashrc
+RUN echo 'alias local_gazebo="export GAZEBO_MASTER_URI=http://127.0.0.1:11345"' >> ~/.bashrc
+
 
 
 # Build any additional packages.
