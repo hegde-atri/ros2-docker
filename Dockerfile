@@ -55,7 +55,12 @@ RUN apt-get install -y \
     libegl1-mesa-dev \
     libgl1-mesa-dev \
     libgles2-mesa-dev \
-    python3-pandas
+    python3-pandas \
+    net-tools \
+    iputils-ping \
+    iproute2 \
+    network-manager \
+
 
 
 
@@ -110,6 +115,13 @@ RUN echo 'export ROS_DOMAIN_ID=1' >> ~/.bashrc
 RUN echo "[ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion" >> ~/.bashrc
 RUN echo 'eval "$(register-python-argcomplete3 ros2)"' >> ~/.bashrc
 RUN echo 'eval "$(register-python-argcomplete3 colcon)"' >> ~/.bashrc
+
+# Multicast issue testing
+RUN echo 'alias check_interface="ifconfig"' >> ~/.bashrc
+RUN echo 'alias ros_domain="export ROS_DOMAIN_ID=0"' >> ~/.bashrc
+RUN echo 'alias disable_multicast="export CYCLONEDDS_URI='"'"'<CycloneDDS><Domain><General><AllowMulticast>false</AllowMulticast></General></Domain></CycloneDDS>'"'"'"' >> ~/.bashrc
+RUN echo 'alias local_only="export ROS_LOCALHOST_ONLY=1"' >> ~/.bashrc
+
 
 # Build any additional packages.
 # WORKDIR /home/student/ros2_ws/src
