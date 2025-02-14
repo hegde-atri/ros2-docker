@@ -25,7 +25,7 @@ unsupported.
 
 # Prerequisites
 
-Clone this repository using the command below in a location your prefer. You will need to remember this location.
+Clone this repository using the command below in a location your prefer. You will need to remember this location. You will also need to install docker (with docker compose). Refer to your platform specific instructions.
 
 ``` bash
 git clone https://github.com/hegde-atri/ros2-docker --depth 1
@@ -36,7 +36,9 @@ git clone https://github.com/hegde-atri/ros2-docker --depth 1
 > [!IMPORTANT]
 > You must first install Docker from your distribution's package manager (not Docker Desktop!). For Ubuntu users, follow [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) to install Docker.
 >
-> If you are using a distribution which has `pacman` as its package manager, most commonly Arch Linux and its derivatives (Manjaro, EndeavourOS, Artix, etc), you must also install `docker-compose`. This is a separate package in Arch's repositories to `docker`, unlike in other distributions where `compose` is within the `docker` package.
+> Depending on your package manager, you might need to install the Docker Compose plugin seperately. Refer to your package manager or distributions documentation. 
+>
+> You can verify your docker compose installation with the following command - `docker compose version`.
 
 > Expected performance is 60fps in gazebo.
 
