@@ -97,7 +97,7 @@ Type `ros_shell` in the current terminal to enter your ros environment.
 
 1.  Find out what shell you are using by running the command
     `echo $SHELL`.
-2.  It will be either bash or zsh.
+2.  It will likely be bash or zsh, but could be something else.
     1.  If you are running `bash` add the next code block to `~/.bashrc`
     2.  If you are running `zsh` add the the next code block to
         `~/.zshrc`
@@ -124,6 +124,30 @@ ros_shell() {
     echo "Launching ROS Shell, type 'exit' to exit the shell once you are done."
     docker exec -it ros2 /bin/bash
 }
+```
+
+If you are running fish, use the following code in `~/.config/fish/config.fish`
+
+```fish
+set -x ROS2_DOCKER_ENV <STEP-3>
+
+function ros_start
+    set -x ROS_PROJECT_PATH (pwd)
+    cd $ROS2_DOCKER_ENV
+    git pull
+    docker-compose -f docker-compose.linux.yml up -d --build
+    cd $ROS_PROJECT_PATH
+    xhost +local:root
+end
+
+function ros_stop
+    cd $ROS2_DOCKER_ENV; and docker compose down; and cd; and echo $ROS_PROJECT_PATH
+end
+
+function ros_shell
+    echo "Launching ROS Shell, type 'exit' to exit the shell once you are done."
+    docker exec -it ros2 /bin/bash
+end
 ```
 
 Now restart your shell.
