@@ -59,18 +59,6 @@ RUN apt-get install -y \
     iputils-ping \
     iproute2
 
-RUN echo 'check_gazebo() {\n\
-    echo "Testing Gazebo configuration..."\n\
-    echo "IGN_IP: $IGN_IP"\n\
-    echo "GAZEBO_IP: $GAZEBO_IP"\n\
-    echo "GAZEBO_MASTER_URI: $GAZEBO_MASTER_URI"\n\
-    echo "GAZEBO_MODEL_PATH: $GAZEBO_MODEL_PATH"\n\
-}' >> ~/.bashrc
-
-RUN echo 'alias gz_check=check_gazebo' >> ~/.bashrc
-
-
-
 RUN useradd -ms /bin/bash student \
     && echo "student:password" | chpasswd
 
