@@ -59,8 +59,6 @@ RUN apt-get install -y \
     iputils-ping \
     iproute2
 
-ENV CYCLONEDDS_URI='<CycloneDDS><Domain><General><AllowMulticast>false</AllowMulticast><NetworkInterfaceAddress>lo</NetworkInterfaceAddress><EnableMulticastLoopback>true</EnableMulticastLoopback></General></Domain></CycloneDDS>'
-
 RUN echo 'check_gazebo() {\n\
     echo "Testing Gazebo configuration..."\n\
     echo "IGN_IP: $IGN_IP"\n\
