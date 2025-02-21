@@ -5,14 +5,22 @@
 ### Ubuntu/Debian
 Make sure to install docker using [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04).
 
-Make sure you also complete the guide Step 1 **and** [Step 2 (Optional)](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04#step-2-executing-the-docker-command-without-sudo-optional) as you need to be able to use the `docker` command without root permission.
+Make sure you also complete the guide Step 1 **and** [Step 2 (Optional)](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04#step-2-executing-the-docker-command-without-sudo-optional) as you need to be able to use the `docker` command without root permissions.
 
 ### Arch Linux (Artix/Endeavour/Manjaro)
 
-You can install it using the command below.
+You can install it using the command below, but also refer to the [documentation](https://wiki.archlinux.org/title/Docker) to run the service, and execute `docker` without root permissions.
 
 ```shell
 sudo pacman -S docker docker-compose
+```
+
+### Fedora
+
+You can use the command below to install it on Fedora 41 and newer. Make sure to refer to the [documentation](https://docs.fedoraproject.org/en-US/quick-docs/installing-docker/) as this is untested.
+
+```bash
+sudo dnf install docker-cli containerd docker-compose
 ```
 
 ### NixOS
