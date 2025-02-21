@@ -60,6 +60,8 @@ git clone https://github.com/hegde-atri/ros2-docker --depth 1
 
 ### 2.2 Setup your Shell
 
+The `<DOCKER-COMMAND>` is  `docker compose -f docker-compose.linux.yml up -d --build`
+
 Refer to [shell.md](./shell.md) to setup your shell.
 
 > [!WARNING]

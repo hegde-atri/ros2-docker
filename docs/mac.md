@@ -19,6 +19,8 @@ git clone https://github.com/hegde-atri/ros2-docker --depth 1
 
 ### 2.2 Setup your shell
 
+The `<DOCKER-COMMAND>` is  `docker compose up -d --build`
+
 Refer to [shell.md](./shell.md) to setup your shell.
 
 ## 3. Start using the containers

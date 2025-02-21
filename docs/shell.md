@@ -7,6 +7,8 @@ Find out what shell you are using by running the command `echo $SHELL` and then 
 
 In the code blocks you will find `<YOUR PATH>` in the first line. This needs to replaced by the path to where you cloned this repository. You can find this out by going to the repository and running `pwd`.
 
+You will also need to replace `<DOCKER-COMMAND>` with the docker command found on your platform file.
+
 > [!WARNING]
 > If you are running Linux, you need to allow have Xwayland running with the following xhost command added to your shell configuration `xhost +local:root
 
@@ -21,7 +23,7 @@ ros_start() {
     export ROS_PROJECT_PATH=$(pwd)
     cd $ROS2_DOCKER_ENV
     git pull
-    docker compose -f docker-compose.linux.yml up -d --build
+    <DOCKER-COMMAND>
     cd $ROS_PROJECT_PATH
 }
 
@@ -48,7 +50,7 @@ function ros_start
     set -x ROS_PROJECT_PATH (pwd)
     cd $ROS2_DOCKER_ENV
     git pull
-    docker-compose -f docker-compose.linux.yml up -d --build
+    <DOCKER-COMMAND>
     cd $ROS_PROJECT_PATH
     xhost +local:root
 end
