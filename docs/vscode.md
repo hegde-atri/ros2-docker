@@ -18,9 +18,9 @@ Using the Command menu (MacOS: Cmd + Shift + P  Linux/Windows: Ctrl + Shift + P)
 
 Here select `/ros2`.
 
-Now allow VSCode some time as it installs it self in the container.
+Now allow VSCode some time as it installs itself in the container.
 
-When you see the new window appear, click open directory and choose `/home/student`
+When you see the new window appear, click open folder and choose `/home/student`
 
 Now you can just work in VSCode.
 
