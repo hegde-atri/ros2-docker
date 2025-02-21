@@ -66,3 +66,5 @@ Refer to [shell.md](./shell.md) to setup your shell.
 > If you are running Linux, you need to allow have Xwayland running with the following xhost command added to your shell configuration `xhost +local:root
 
 ## 3. Start using the containers
+
+Refer to [containers.md](./containers.md) to use the containers.
