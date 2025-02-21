@@ -10,7 +10,7 @@ In the code blocks you will find `<YOUR PATH>` in the first line. This needs to 
 You will also need to replace `<DOCKER-COMMAND>` with the docker command found on your platform file.
 
 > [!WARNING]
-> If you are running Linux, you need to allow have Xwayland running with the following xhost command added to your shell configuration `xhost +local:root
+> If you are running Linux, you need to allow have Xwayland running with the following xhost command added to your shell configuration `xhost +local:root`
 
 ## BASH and ZSH
 
