@@ -52,7 +52,6 @@ function ros_start
     git pull
     <DOCKER-COMMAND>
     cd $ROS_PROJECT_PATH
-    xhost +local:root
 end
 
 function ros_stop
