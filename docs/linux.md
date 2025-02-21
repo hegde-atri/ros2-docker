@@ -5,6 +5,9 @@
 ### Ubuntu/Debian
 Make sure to install docker using [this guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04).
 
+> [!NOTE]
+> Does not work with Docker Desktop. If you have installed it through `snap` or any other method apart from using `apt` then uninstall it, and install it using the guide above.
+
 Make sure you also complete the guide Step 1 **and** [Step 2 (Optional)](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04#step-2-executing-the-docker-command-without-sudo-optional) as you need to be able to use the `docker` command without root permissions.
 
 ### Arch Linux (Artix/Endeavour/Manjaro)
