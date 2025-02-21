@@ -12,7 +12,7 @@ unsupported.
 
 - [Linux](./docs/linux.md)
 - [MacOS](./docs/mac.md)
-- [Windows](./docs/windows.md)
+- [Windows](./docs/windows.md) (Support is tempermental, not recommended)
 
 # FAQ
 
