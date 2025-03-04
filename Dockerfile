@@ -45,7 +45,8 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
     rviz \
     tmux \
     wget \
-    xorg-dev
+    xorg-dev \
+    eog
 
 RUN pip3 install setuptools==58.2.0
 
