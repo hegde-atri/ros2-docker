@@ -6,7 +6,7 @@ WORKDIR /ros2_ws/src
 ENV QT_X11_NO_MITSHM=1
 ENV EDITOR=nano
 
-RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     cmake \
     curl \
     gazebo \
@@ -28,7 +28,9 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
     ros-humble-robot-localization \
     ros-humble-plotjuggler-ros \
     ros-humble-robot-state-publisher \
-    ros-humble-ros2bag \
+    ros-humble-ros2bag
+
+RUN apt-get update && apt-get install -y \
     ros-humble-rosbag2-storage-default-plugins \
     ros-humble-rmw-fastrtps-cpp \
     ros-humble-rmw-cyclonedds-cpp \
